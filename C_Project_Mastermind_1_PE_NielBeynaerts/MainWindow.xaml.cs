@@ -192,7 +192,11 @@ namespace C_Project_Mastermind_1_PE_NielBeynaerts
         DateTime startTime;
         TimeSpan elapsedTime;
 
-
+        ///<summary>
+        ///De 'StartCountdown' methode start een timer
+        ///die iedere seconde omhoog gaat. Wanneer de timer 10 seconden bereikt zal deze resetten
+        ///en de variable 'attempts' verhogen met 1
+        ///</summary>
         private void StartCountdown()
         {
             startTime = DateTime.Now;
@@ -201,7 +205,10 @@ namespace C_Project_Mastermind_1_PE_NielBeynaerts
             timer.Start(); //Timer starten
         }
 
-
+        ///<summary>
+        ///De 'StopCountdown' methode stopt de timer
+        ///die eerder werd gestart via de 'StartCountdown' methode
+        ///</summary>
         private void StopCountdown()
         {
             timer.Stop();
