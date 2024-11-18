@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace C_Project_Mastermind_1_PE_NielBeynaerts
 {
@@ -173,5 +174,12 @@ namespace C_Project_Mastermind_1_PE_NielBeynaerts
         }
 
 
+        private void ToggleDebug()
+        {
+            randomGeneratedCodeTextBox.Text = $"{randomColorSelection[0]}, {randomColorSelection[1]}, {randomColorSelection[2]}, {randomColorSelection[3]}";
+            randomGeneratedCodeTextBox.Visibility = Visibility.Visible;
+        }
+
+        
     }
 }
