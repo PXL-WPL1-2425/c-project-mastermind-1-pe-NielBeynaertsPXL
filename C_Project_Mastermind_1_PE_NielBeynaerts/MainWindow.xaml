@@ -24,8 +24,8 @@
                 <RadioButton x:Name="whiteRadioButton" Content="Wit" Margin="0,0,10,0" VerticalAlignment="Center" Checked="RadioButton_Checked"/>
             </StackPanel>
         </GroupBox>
-        <Label x:Name="timerLabel" Content="" HorizontalAlignment="Left" Margin="310,364,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="randomGeneratedCodeTextBox" HorizontalAlignment="Center" Margin="0,240,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180" Height="28" Visibility="Hidden"/>
+        <Label x:Name="timerLabel" Content="00" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="385,146,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>

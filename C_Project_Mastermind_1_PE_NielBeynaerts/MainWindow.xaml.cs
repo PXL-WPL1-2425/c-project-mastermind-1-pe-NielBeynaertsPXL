@@ -26,6 +26,8 @@ namespace C_Project_Mastermind_1_PE_NielBeynaerts
 
         SolidColorBrush[] chosenColors = new SolidColorBrush[4]; // Initialize array to hold 4 colors
 
+        private DispatcherTimer timer = new DispatcherTimer();
+
         int attempts = 0;
         public MainWindow()
         {
@@ -58,6 +60,7 @@ namespace C_Project_Mastermind_1_PE_NielBeynaerts
             randomColorSelection[2] = colorsName[randomColors[2]];
             randomColorSelection[3] = colorsName[randomColors[3]];
 
+            StartCountdown();
         }
 
         private void color1Button_Click(object sender, RoutedEventArgs e)
@@ -151,20 +154,26 @@ namespace C_Project_Mastermind_1_PE_NielBeynaerts
                 if (selectedColors[i] == randomColorSelection[i])
                 {
                     SetButtonStyle(buttons[i], new Thickness(2, 2, 2, 20), Colors.DarkRed);
+                    StopCountdown();
+                    StartCountdown();
                 }
                 // Check for a partial match
                 else if (randomColorSelection.Contains(selectedColors[i]))
                 {
                     SetButtonStyle(buttons[i], new Thickness(2, 2, 2, 20), Colors.Wheat);
+                    StopCountdown();
+                    StartCountdown();
                 }
 
-                if(selectedColors[0] == randomColorSelection[0] && selectedColors[1] == randomColorSelection[1] && selectedColors[2] == randomColorSelection[2] && selectedColors[3] == randomColorSelection[3])
+                if (selectedColors[0] == randomColorSelection[0] && selectedColors[1] == randomColorSelection[1] && selectedColors[2] == randomColorSelection[2] && selectedColors[3] == randomColorSelection[3])
                 {
                     Close();
+                    StopCountdown();
                 }
             }
             attempts++;
             this.Title = $"Poging {attempts}";
+            
         }
 
         private void SetButtonStyle(Button button, Thickness thickness, Color color)
@@ -180,6 +189,40 @@ namespace C_Project_Mastermind_1_PE_NielBeynaerts
             randomGeneratedCodeTextBox.Visibility = Visibility.Visible;
         }
 
-        
+        DateTime startTime;
+        TimeSpan elapsedTime;
+
+
+        private void StartCountdown()
+        {
+            startTime = DateTime.Now;
+            timer.Tick += Timer_Tick; //Event koppelen
+            timer.Interval = new TimeSpan(0, 0, 1); //Elke seconde
+            timer.Start(); //Timer starten
+        }
+
+
+        private void StopCountdown()
+        {
+            timer.Stop();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            elapsedTime = DateTime.Now - startTime;
+            timerLabel.Content = elapsedTime.ToString("ss");
+
+            if(elapsedTime.TotalSeconds > 10)
+            {
+                StopCountdown();
+                attempts++;
+                this.Title = $"Poging {attempts}";
+                StartCountdown();
+            }
+
+        }
+
+
+
     }
 }
